@@ -16,4 +16,5 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-static/* linguist-vendored
+Arduino/RCT-VarioMeter_180/*.h linguist-vendored
+Arduino/RCT-VarioMeter_280/*.h linguist-vendored
