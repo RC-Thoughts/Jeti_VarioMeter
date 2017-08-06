@@ -13,7 +13,7 @@ case 1 : {
     // Line 1
     strcat_P((char*)&msg_line1, (const char*)F("Altit: "));
     temp[0] = 0;
-    floatToString((char*)&temp, ((float)uAltitude / 10), 1);
+    floatToString((char*)&temp, ((float)uAltitude), 0);
     strcat((char*)&msg_line1, (char*)&temp);
     if (units == 1) {
       strcat_P((char*)&msg_line1, (const char*)F("ft"));
@@ -62,6 +62,13 @@ case 2 : {
   }
 case 3 : {
     msg_line1[0] = 0; msg_line2[0] = 0;
+    strcat_P((char*)&msg_line1, (const char*)F("Altitude Reset"));
+    strcat_P((char*)&msg_line2, (const char*)F("Press DN"));
+    JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
+    break;
+  }
+case 4 : {
+    msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Units:  "));
     if (units == 1) {
       strcat_P((char*)&msg_line1, (const char*)F("US"));
@@ -72,10 +79,17 @@ case 3 : {
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 4 : {
+case 5 : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Save and restart"));
     strcat_P((char*)&msg_line2, (const char*)F("Press: UP & DN"));
+    JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
+    break;
+  }
+case 6 : {
+    msg_line1[0] = 0; msg_line2[0] = 0;
+    strcat_P((char*)&msg_line1, (const char*)F("Altitude zeroed"));
+    strcat_P((char*)&msg_line2, (const char*)F("Press < to exit"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
@@ -85,3 +99,4 @@ case 4 : {
   //  }
   JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
 }
+

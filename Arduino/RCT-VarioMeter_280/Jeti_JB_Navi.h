@@ -19,12 +19,15 @@ if ( (read != 240 ) && (read != 0) )
       if (current_screen != MAX_SCREEN)
       {
         current_screen++;
-        if (current_screen == 5) {
+        if (current_screen == 6) {
           current_screen = 0;
         }
       }
       break;
     case 112 : // LEFT
+      if (current_screen == 6) {
+        current_screen = 1;
+      }
       if (current_screen != 0) {
         current_screen--;
       }
@@ -33,12 +36,16 @@ if ( (read != 240 ) && (read != 0) )
       break;
     case 176 : // DOWN
       if (current_screen == 3) {
+        startAltitude = average_altitude;
+        current_screen = 6;
+      }
+      if (current_screen == 4) {
         if (units == 0) {
           units = 1;
         } else {
           units = 0;
         }
-        current_screen = 3;
+        current_screen = 4;
       }
       break;
     case 144 : // UP+DOWN

@@ -41,7 +41,7 @@ uVario = vario;
 uAltitude = average_altitude - startAltitude;
 
 if (uLoopCount == 20) {
-  startAltitude = curAltitude;
+  startAltitude = average_altitude;
 }
 
 if (uLoopCount < 40) {
