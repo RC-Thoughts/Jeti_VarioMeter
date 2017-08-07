@@ -10,13 +10,14 @@
     Simple Variometer sensor - Vertical speed in m/s or ft/s
 
     Includes
+    - Relative altitude
     - Altitude
     - Temperatue
     - Pressure
     - Vario
 
      Localization selectable vith Jetibox by user to EU / US:
-    - Relative altitude
+     - Altitudes    m / ft
      - Temperature  C / F
      - Pressure     hPa / inHG
      - Vario        m/s / ft/s
