@@ -48,6 +48,7 @@ if (uLoopCount == 20) {
 if (uLoopCount < 40) {
   uLoopCount++;
   uAltitude = 0;
+  uAbsAltitude = 0;
   uVario = 0;
 }
 
@@ -57,6 +58,7 @@ if (uLoopCount < 40) {
 // ft = m / 0.3048
 if (units == 1) {
   uAltitude = uAltitude / 0.3048;
+  uAbsAltitude = uAbsAltitude / 0.3048;
   uVario = uVario / 0.3048;
   uPressure = uPressure * 0.029529983071445;
   uTemperature = uTemperature * 1.8 + 32;
