@@ -21,12 +21,14 @@ if (units == 255 or units == 254) {
 // JB.setValue30 =  -536870911 to 536870911 (Variable is long)
 
 if (units == 0) {
-  JB.setValue30(JB.addData(F("Altitude"), F("m")), &uAltitude, 0);
+  JB.setValue30(JB.addData(F("Rel. Altit"), F("m")), &uAltitude, 0);
+  JB.setValue30(JB.addData(F("Altitude"), F("m")), &uAbsAltitude, 0);
   JB.setValue30(JB.addData(F("Vario"), F("m/s")), &uVario, 1);
   JB.setValue30(JB.addData(F("Pressure"), F("hpa")), &uPressure, 2);
   JB.setValue30(JB.addData(F("Temperature"), F("\xB0\x43")), &uTemperature, 2);
 } else {
-  JB.setValue30(JB.addData(F("Altitude"), F("ft")), &uAltitude, 0);
+  JB.setValue30(JB.addData(F("Rel. Altit"), F("ft")), &uAltitude, 0);
+  JB.setValue30(JB.addData(F("Altitude"), F("ft")), &uAbsAltitude, 0);
   JB.setValue30(JB.addData(F("Vario"), F("ft/s")), &uVario, 1);
   JB.setValue30(JB.addData(F("Pressure"), F("inHG")), &uPressure, 2);
   JB.setValue30(JB.addData(F("Temperature"), F("\xB0\x46")), &uTemperature, 2);

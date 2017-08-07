@@ -49,7 +49,7 @@ case 2 : {
     // Line 2
     strcat_P((char*)&msg_line2, (const char*)F("Pres: "));
     temp[0] = 0;
-    floatToString((char*)&temp, ((float)uPressure / 100), 2);
+    floatToString((char*)&temp, ((float)uPressure / 100), 1);
     strcat((char*)&msg_line2, (char*)&temp);
     if (units == 1) {
       strcat_P((char*)&msg_line2, (const char*)F("inHG"));

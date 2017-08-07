@@ -1,6 +1,6 @@
 /*
    -----------------------------------------------------------
-                   Jeti Variometer v 1.0
+                   Jeti Variometer v 1.1
    -----------------------------------------------------------
 
     Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
@@ -16,7 +16,7 @@
     - Vario
 
      Localization selectable vith Jetibox by user to EU / US:
-     - Altitude     m / ft
+    - Relative altitude
      - Temperature  C / F
      - Pressure     hPa / inHG
      - Vario        m/s / ft/s

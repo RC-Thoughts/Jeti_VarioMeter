@@ -24,6 +24,7 @@ const unsigned char Jeti_SensorID4 = 0x08;
 // Sensors
 int uLoopCount = 0;
 long uAltitude = 0;
+long uAbsAltitude = 0;
 long uPressure = 0;
 long uTemperature = 0;
 long uVario = 0;

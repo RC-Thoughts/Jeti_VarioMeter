@@ -49,7 +49,7 @@ if ( (read != 240 ) && (read != 0) )
       }
       break;
     case 144 : // UP+DOWN
-      if (current_screen == 4) {
+      if (current_screen == 5) {
         EEPROM.write(0, units);
         resetFunc();
       }

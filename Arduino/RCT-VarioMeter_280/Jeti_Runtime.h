@@ -39,6 +39,7 @@ VarFilter.Filter(vario);
 uVario = vario;
 
 uAltitude = average_altitude - startAltitude;
+uAbsAltitude = average_altitude;
 
 if (uLoopCount == 20) {
   startAltitude = average_altitude;
