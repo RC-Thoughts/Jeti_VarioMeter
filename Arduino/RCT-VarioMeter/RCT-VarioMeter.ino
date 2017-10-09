@@ -1,6 +1,6 @@
 /*
    -----------------------------------------------------------
-                   Jeti Variometer v 1.1
+                   Jeti Variometer v 1.2
    -----------------------------------------------------------
 
     Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
@@ -15,14 +15,19 @@
     - Temperatue
     - Pressure
     - Vario
+    - Humidity (Requires BME280)
 
      Localization selectable vith Jetibox by user to EU / US:
      - Altitudes    m / ft
      - Temperature  C / F
      - Pressure     hPa / inHG
      - Vario        m/s / ft/s
+     - Humidity     hR (Requires BME280)
+     
+    Compatible with BMP085, BMP280 and BME280 sensors
 
     Big thanks to scimart for testing with test-environment!
+    Big thanks to nightflyer88 for great vario-filter!
    -----------------------------------------------------------
     Shared under MIT-license by Tero Salminen (c) 2017
    -----------------------------------------------------------
@@ -50,9 +55,6 @@
 #define COND_MORE_EQUAL 2
 
 JETI_Box_class JB;
-
-// ID number for sensor (Needs to be unique for all sensors in model)
-const unsigned char Jeti_SensorID3 = 0x02;
 
 #include "Jeti_Init.h"
 
