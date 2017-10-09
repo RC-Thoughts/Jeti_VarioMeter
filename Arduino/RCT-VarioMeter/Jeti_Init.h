@@ -39,5 +39,5 @@ int senStore = 0;
 #define FILTER_Y 0.15
 
 // Vario dead zone filter in centimeter (Even if you use US-units!)
-#define DEADZONE_UP 25
-#define DEADZONE_DOWN -25
+#define DEADZONE_UP 5
+#define DEADZONE_DOWN -5
