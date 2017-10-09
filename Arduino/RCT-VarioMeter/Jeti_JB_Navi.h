@@ -35,7 +35,7 @@ if ( (read != 240 ) && (read != 0) )
     case 176 : // DOWN
       if (current_screen == 3) {
         startAltitude = curAltitude;
-        current_screen = 6;
+        current_screen = 7;
       }
       if (current_screen == 4) {
         if (units == 0) {
