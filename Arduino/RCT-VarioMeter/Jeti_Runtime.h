@@ -13,7 +13,7 @@ if (senType == 1) {
   uHumidity = bme280.readHumidity() * 10; // In %rH
 }
 if (senType == 2) {
-  curAltitude = bmp085.readAltitude(1013.25) * 100; // In Centimeter
+  curAltitude = bmp085.readAltitude(101325) * 100; // In Centimeter
   uTemperature = bmp085.readTemperature() * 10; // In Celsius ( x10 for one decimal)
   uPressure = bmp085.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
 }
