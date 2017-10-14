@@ -4,8 +4,7 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 
-// Set sensor-type based on saved setting - If not saved default to BMP280
-
+// Libraries for different sensor-modules
 #include <Adafruit_BMP280.h>
 Adafruit_BMP280 bmp280;
 #include <Adafruit_BME280.h>

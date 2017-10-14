@@ -5,15 +5,13 @@ if (senType == 0) {
   curAltitude = bmp280.readAltitude(1013.25) * 100; // In Centimeter
   uTemperature = bmp280.readTemperature() * 10; // In Celsius ( x10 for one decimal)
   uPressure = bmp280.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
-}
-if (senType == 1) {
+} else if (senType == 1) {
   curAltitude = bme280.readAltitude(1013.25) * 100; // In Centimeter
   uTemperature = bme280.readTemperature() * 10; // In Celsius ( x10 for one decimal)
   uPressure = bme280.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
   uHumidity = bme280.readHumidity() * 10; // In %rH
-}
-if (senType == 2) {
-  curAltitude = bmp085.readAltitude(1013.25) * 100; // In Centimeter
+} else if (senType <= 4) {
+  curAltitude = bmp085.readAltitude(101325) * 100; // In Centimeter
   uTemperature = bmp085.readTemperature() * 10; // In Celsius ( x10 for one decimal)
   uPressure = bmp085.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
 }

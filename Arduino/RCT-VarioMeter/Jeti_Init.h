@@ -5,9 +5,9 @@
 #define ABOUT_2 F("   Variometer")
 
 // Max screens in jetibox (navigating over this goes to start)
-#define MAX_SCREEN 6
+#define MAX_SCREEN 10
 
-// ID number for sensor (Needs to be unique for all sensors in model)
+// ID number for sensor (Needs to be unique for all sensors in model 0xA400 – 0xA41F)
 const unsigned char Jeti_SensorID3 = 0x02;
 const unsigned char Jeti_SensorID4 = 0x08;
 
@@ -23,21 +23,24 @@ long curAltitude = 0;
 long lastAltitude = 0;
 unsigned long lastTime = 0;
 long startAltitude = 0;
-//#if SENSOR_TYPE == 1
-  long uHumidity = 0;
-//#endif
+long uHumidity = 0;
+
+// Init done?
+int initDone;
 
 // EU/US Units
 int units = 0;
 
 // Sensor type
-int senType = 0;
 int senStore = 0;
+int senType = 0;
 
 // Vario lowpass filter
-#define FILTER_X 0.88
-#define FILTER_Y 0.15
+int FilterX = 88;
+int FilterY = 15;
+float FILTER_X;
+float FILTER_Y;
 
 // Vario dead zone filter in centimeter (Even if you use US-units!)
-#define DEADZONE_UP 5
-#define DEADZONE_DOWN -5
+int DEADZONE_UP = 3;
+int DEADZONE_DOWN = -3;
