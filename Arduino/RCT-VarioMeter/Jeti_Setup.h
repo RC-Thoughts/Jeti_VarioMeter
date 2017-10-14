@@ -1,7 +1,7 @@
 // Stuff that needs to be inside void setup()
 
 // Sensor Name, Serial speed is 10240 for Pro Mini 3.3V due software serial
-JB.Init(F("RCT Vario"), JETI_RX, 10240);
+JB.Init(F("RCT Vario"), JETI_RX, 9900);
 
 // If first start of sensor store default values and restart
 initDone = EEPROM.read(10);
