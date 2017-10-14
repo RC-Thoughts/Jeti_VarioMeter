@@ -43,7 +43,7 @@ if ( (read != 240 ) && (read != 0) )
       if (current_screen == 4) {
         FilterX++;
         if (FilterX == 100) {
-          FilterX = 0;
+          FilterX = 1;
         }
         FILTER_X = (float)FilterX / 100;
         current_screen = 4;
@@ -51,7 +51,7 @@ if ( (read != 240 ) && (read != 0) )
       if (current_screen == 5) {
         FilterY++;
         if (FilterY == 100) {
-          FilterY = 0;
+          FilterY = 1;
         }
         FILTER_Y = (float)FilterY / 100;
         current_screen = 5;
@@ -73,16 +73,16 @@ if ( (read != 240 ) && (read != 0) )
       }
       if (current_screen == 4) {
         FilterX--;
-        if (FilterX < 0) {
-          FilterX = 0;
+        if (FilterX <= 0) {
+          FilterX = 1;
         }
         FILTER_X = (float)FilterX / 100;
         current_screen = 4;
       }
       if (current_screen == 5) {
         FilterY--;
-        if (FilterY < 0) {
-          FilterY = 0;
+        if (FilterY <= 0) {
+          FilterY = 1;
         }
         FILTER_Y = (float)FilterY / 100;
         current_screen = 5;
@@ -138,12 +138,12 @@ if ( (read != 240 ) && (read != 0) )
       break;
     case 96 : // LEFT+RIGHT
       if (current_screen == 4) {
-        FilterX = 0;
+        FilterX = 1;
         FILTER_X = (float)FilterX / 100;
         current_screen = 4;
       }
       if (current_screen == 5) {
-        FilterY = 0;
+        FilterY = 1;
         FILTER_Y = (float)FilterY / 100;
         current_screen = 5;
       }
