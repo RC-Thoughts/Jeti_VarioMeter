@@ -10,7 +10,12 @@ if (senType == 0) {
   uTemperature = bme280.readTemperature() * 10; // In Celsius ( x10 for one decimal)
   uPressure = bme280.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
   uHumidity = bme280.readHumidity() * 10; // In %rH
+<<<<<<< HEAD
 } else if (senType <= 4) {
+=======
+}
+if (senType == 2) {
+>>>>>>> origin/master
   curAltitude = bmp085.readAltitude(101325) * 100; // In Centimeter
   uTemperature = bmp085.readTemperature() * 10; // In Celsius ( x10 for one decimal)
   uPressure = bmp085.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
