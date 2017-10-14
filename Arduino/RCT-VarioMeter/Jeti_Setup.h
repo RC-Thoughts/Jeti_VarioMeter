@@ -1,7 +1,24 @@
 // Stuff that needs to be inside void setup()
 
 // Sensor Name, Serial speed is 10240 for Pro Mini 3.3V due software serial
-JB.Init(F("RCT Vario"), JETI_RX, 9900);
+JB.Init(F("RCT Vario"), JETI_RX, 10240);
+
+// If first start of sensor store default values and restart
+initDone = EEPROM.read(10);
+if (initDone != 1) {
+  EEPROM.write(0, 0); // Default to EU units
+  EEPROM.write(1, 0); // Default to BMP280 sensor
+  EEPROM.write(2, 3); // Default to Deadzone 3
+  EEPROM.write(3, 88); // Default to FilterX 0.88
+  EEPROM.write(4, 15); // Default to FilterY 0.15
+  EEPROM.write(10, 1); // Set First init to done
+  for (int i = 0; i <= 4; i++) {
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(100);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(100);
+  }
+}
 
 // Read EU/US
 units = EEPROM.read(0);
@@ -11,10 +28,31 @@ if (units < 0 or units > 1) {
 
 // Read sensor type
 senStore = EEPROM.read(1);
-if (senStore < 0 or senStore > 2) {
+if (senStore < 0 or senStore > 3) {
   senStore = 0;
 }
 senType = senStore;
+
+// Read Deadzone and set to default 3 if not set
+DEADZONE_UP = EEPROM.read(2);
+if (DEADZONE_UP < 0 or DEADZONE_UP > 5) {
+  DEADZONE_UP = 3;
+}
+DEADZONE_DOWN = (DEADZONE_UP * -1);
+
+// Read Filter X and set to default 0.88 if not set
+FilterX = EEPROM.read(3);
+if (FilterX <= 0 or FilterX >= 100) {
+  FilterX = 88;
+}
+FILTER_X = (float)FilterX / 100;
+
+// Read Filter Y and set to default 0.15 if not set
+FilterY = EEPROM.read(4);
+if (FilterY <= 0 or FilterY >= 100) {
+  FilterY = 15;
+}
+FILTER_Y = (float)FilterY / 100;
 
 // Define Jeti Sensor value name & unit & variable & precision (decimals)
 // JB.setValue30(JB.addData(F("NAME"), F("UNIT")), &VARIABLE, DEC);
@@ -45,12 +83,9 @@ if (senType == 1) {
 
 // Start using correct sensor-library based on used sensor type
 if (senType == 0) {
-  bmp280.begin();
+  bmp280.begin(); // Start BMP280
 } else if (senType == 1) {
-  bme280.begin();
-} else if (senType == 2) {
-  bmp085.begin();
-} else {
-  bmp280.begin();
+  bme280.begin(); // Start BME280
+} else if (senType <= 3) {
+  bmp085.begin(); // Start BMP085 or BMP180
 }
-

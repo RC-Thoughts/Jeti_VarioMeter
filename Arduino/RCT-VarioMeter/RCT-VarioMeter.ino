@@ -1,6 +1,6 @@
 /*
    -----------------------------------------------------------
-                   Jeti Variometer v 1.2
+                   Jeti Variometer v 1.3
    -----------------------------------------------------------
 
     Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
@@ -23,7 +23,7 @@
      - Pressure     hPa / inHG
      - Vario        m/s / ft/s
      - Humidity     hR (Requires BME280)
-     
+
     Compatible with BMP085, BMP280 and BME280 sensors
 
     Big thanks to scimart for testing with test-environment!

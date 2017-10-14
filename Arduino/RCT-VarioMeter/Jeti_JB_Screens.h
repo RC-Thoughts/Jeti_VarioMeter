@@ -66,6 +66,39 @@ case 3 : {
     break;
   }
 case 4 : {
+    // Filter X
+    msg_line1[0] = 0; msg_line2[0] = 0;
+    strcat_P((char*)&msg_line1, (const char*)F("Filter X: "));
+    temp[0] = 0;
+    floatToString((char*)&temp, ((float)FilterX / 100), 2);
+    strcat((char*)&msg_line1, (char*)&temp);
+    strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
+    JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
+    break;
+  }
+case 5 : {
+    // Filter Y
+    msg_line1[0] = 0; msg_line2[0] = 0;
+    strcat_P((char*)&msg_line1, (const char*)F("Filter Y: "));
+    temp[0] = 0;
+    floatToString((char*)&temp, ((float)FilterY / 100), 2);
+    strcat((char*)&msg_line1, (char*)&temp);
+    strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
+    JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
+    break;
+  }
+case 6 : {
+    // Deadzone
+    msg_line1[0] = 0; msg_line2[0] = 0;
+    strcat_P((char*)&msg_line1, (const char*)F("Deadzone: "));
+    temp[0] = 0;
+    floatToString((char*)&temp, ((float)DEADZONE_UP), 0);
+    strcat((char*)&msg_line1, (char*)&temp);
+    strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
+    JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
+    break;
+  }
+case 7 : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Units:  "));
     if (units == 1) {
@@ -73,11 +106,11 @@ case 4 : {
     } else {
       strcat_P((char*)&msg_line1, (const char*)F("EU"));
     }
-    strcat_P((char*)&msg_line2, (const char*)F("Change: DN"));
+    strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 5 : {
+case 8 : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Sensor: "));
     if (senStore == 0) {
@@ -89,18 +122,21 @@ case 5 : {
     if (senStore == 2) {
       strcat_P((char*)&msg_line1, (const char*)F("BMP085"));
     }
-    strcat_P((char*)&msg_line2, (const char*)F("Change: DN"));
+    if (senStore == 3) {
+      strcat_P((char*)&msg_line1, (const char*)F("BMP180"));
+    }
+    strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 6 : {
+case 9 : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Save and restart"));
-    strcat_P((char*)&msg_line2, (const char*)F("Press: UP & DN"));
+    strcat_P((char*)&msg_line2, (const char*)F("Press: >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 7 : {
+case 10 : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Altitude reset"));
     strcat_P((char*)&msg_line2, (const char*)F("Press < to exit"));
