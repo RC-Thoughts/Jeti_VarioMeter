@@ -22,9 +22,9 @@ switch (pressureSensor.type){
     break;
   }
   case MS5611 : { // ############ BETA ############ NOT TESTED !!!!!
-    curAltitude = ms5611.getAltitude(1013.25) * 100; // In Centimeter
-    uTemperature = ms5611.readTemperature() * 10; // In Celsius ( x10 for one decimal)
-    uPressure = ms5611.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
+    uPressure = ms5611.readPressure(true); // In Pascal (100 Pa = 1 hPa = 1 mbar)
+    uTemperature = ms5611.readTemperature(true) * 10; // In Celsius ( x10 for one decimal)
+    curAltitude = ms5611.getAltitude(uPressure,101325) * 100; // In Centimeter
     break;
   }
 }

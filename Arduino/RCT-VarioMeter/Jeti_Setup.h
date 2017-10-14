@@ -13,6 +13,7 @@ if(bmp085.begin()){
 }else{
   Wire.beginTransmission(MS5611_ADDRESS); // if no Bosch sensor, check if return an ACK on MS5611 address 
   if(Wire.endTransmission() == 0){
+    ms5611.begin(MS5611_ULTRA_HIGH_RES);
     pressureSensor.type = MS5611;
   }
 }
