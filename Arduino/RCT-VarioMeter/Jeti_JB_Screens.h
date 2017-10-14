@@ -113,17 +113,27 @@ case setUnits : {
 case detectedSensor : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("detected Sensor: "));
-    if (pressureSensor.type == unknown) {
-      strcat_P((char*)&msg_line2, (const char*)F("not available"));
-    }
-    if (pressureSensor.type == BMP085_BMP180) {
-      strcat_P((char*)&msg_line2, (const char*)F("BMP085/BMP180"));
-    }
-    if (pressureSensor.type == BMP280) {
-      strcat_P((char*)&msg_line2, (const char*)F("BMP280"));
-    }
-    if (pressureSensor.type == BME280) {
-      strcat_P((char*)&msg_line2, (const char*)F("BME280"));
+    switch (pressureSensor.type){
+      case unknown : {
+        strcat_P((char*)&msg_line2, (const char*)F("not available"));
+        break;
+      }
+      case BMP085_BMP180 : {
+        strcat_P((char*)&msg_line2, (const char*)F("BMP085/BMP180"));
+        break;
+      }
+      case BMP280 : {
+        strcat_P((char*)&msg_line2, (const char*)F("BMP280"));
+        break;
+      }
+      case BME280 : {
+        strcat_P((char*)&msg_line2, (const char*)F("BME280"));
+        break;
+      }
+      case MS5611 : {
+        strcat_P((char*)&msg_line2, (const char*)F("MS5611"));
+        break;
+      }
     }
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;

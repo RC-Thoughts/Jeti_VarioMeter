@@ -1,19 +1,32 @@
 // This is the main loop where the work is done
 
 // Read sensormodule values
-if (pressureSensor.type == BMP085_BMP180) {
-  curAltitude = bmp085.readAltitude(101325) * 100; // In Centimeter
-  uTemperature = bmp085.readTemperature() * 10; // In Celsius ( x10 for one decimal)
-  uPressure = bmp085.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
-}else if (pressureSensor.type == BMP280) {
-  curAltitude = bmp280.readAltitude(1013.25) * 100; // In Centimeter
-  uTemperature = bmp280.readTemperature() * 10; // In Celsius ( x10 for one decimal)
-  uPressure = bmp280.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
-}else if (pressureSensor.type == BME280) {
-  curAltitude = bme280.readAltitude(1013.25) * 100; // In Centimeter
-  uTemperature = bme280.readTemperature() * 10; // In Celsius ( x10 for one decimal)
-  uPressure = bme280.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
-  uHumidity = bme280.readHumidity() * 10; // In %rH
+switch (pressureSensor.type){
+  case BMP085_BMP180 : {
+    curAltitude = bmp085.readAltitude(101325) * 100; // In Centimeter
+    uTemperature = bmp085.readTemperature() * 10; // In Celsius ( x10 for one decimal)
+    uPressure = bmp085.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
+    break;
+  }
+  case BMP280 : {
+    curAltitude = bmp280.readAltitude(1013.25) * 100; // In Centimeter
+    uTemperature = bmp280.readTemperature() * 10; // In Celsius ( x10 for one decimal)
+    uPressure = bmp280.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
+    break;
+  }
+  case BME280 : {
+    curAltitude = bme280.readAltitude(1013.25) * 100; // In Centimeter
+    uTemperature = bme280.readTemperature() * 10; // In Celsius ( x10 for one decimal)
+    uPressure = bme280.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
+    uHumidity = bme280.readHumidity() * 10; // In %rH
+    break;
+  }
+  case MS5611 : { // ############ BETA ############ NOT TESTED !!!!!
+    curAltitude = ms5611.getAltitude(1013.25) * 100; // In Centimeter
+    uTemperature = ms5611.readTemperature() * 10; // In Celsius ( x10 for one decimal)
+    uPressure = ms5611.readPressure(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
+    break;
+  }
 }
 
 // Set start-altitude in sensor-start

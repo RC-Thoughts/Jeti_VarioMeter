@@ -3,29 +3,47 @@
 // Sensor Name, Serial speed is 10240 for Pro Mini 3.3V due software serial
 JB.Init(F("RCT Vario"), JETI_RX, 9900);
 
-// identify sensor 
+// identify sensor, check chip-ID on Bosch sensors
 if(bmp085.begin()){
   pressureSensor.type = BMP085_BMP180;
 }else if(bmp280.begin()){
   pressureSensor.type = BMP280;
 }else if(bme280.begin()){
   pressureSensor.type = BME280;
+}else{
+  Wire.beginTransmission(MS5611_ADDRESS); // if no Bosch sensor, check if return an ACK on MS5611 address 
+  if(Wire.endTransmission() == 0){
+    pressureSensor.type = MS5611;
+  }
 }
 
 // If first start of sensor store default values and restart
 if (EEPROM.read(10) != 1) {
-  if(pressureSensor.type == BMP085_BMP180){
-    pressureSensor.filterX = BMP085_FILTER_X;
-    pressureSensor.filterY = BMP085_FILTER_Y;
-    pressureSensor.deadzone = BMP085_DEADZONE;
-  }else if(pressureSensor.type == BMP280){
-    pressureSensor.filterX = BMx280_FILTER_X;
-    pressureSensor.filterY = BMx280_FILTER_Y;
-    pressureSensor.deadzone = BMx280_DEADZONE;
-  }else if(pressureSensor.type == BME280){
-    pressureSensor.filterX = BMx280_FILTER_X;
-    pressureSensor.filterY = BMx280_FILTER_Y;
-    pressureSensor.deadzone = BMx280_DEADZONE;
+  switch (pressureSensor.type){
+    case BMP085_BMP180 : {
+      pressureSensor.filterX = BMP085_FILTER_X;
+      pressureSensor.filterY = BMP085_FILTER_Y;
+      pressureSensor.deadzone = BMP085_DEADZONE;
+      break;
+    }
+    case BMP280 : {
+      pressureSensor.filterX = BMx280_FILTER_X;
+      pressureSensor.filterY = BMx280_FILTER_Y;
+      pressureSensor.deadzone = BMx280_DEADZONE;
+      break;
+    }
+    case BME280 : {
+      pressureSensor.filterX = BMx280_FILTER_X;
+      pressureSensor.filterY = BMx280_FILTER_Y;
+      pressureSensor.deadzone = BMx280_DEADZONE;
+      break;
+    }
+    case MS5611 : { // ############ BETA ############ NOT TESTED !!!!!
+      pressureSensor.filterX = MS5611_FILTER_X;
+      pressureSensor.filterY = MS5611_FILTER_Y;
+      pressureSensor.deadzone = MS5611_DEADZONE;
+      break;
+    }
   }
 
   EEPROM.write(0, EU); // Default to EU units

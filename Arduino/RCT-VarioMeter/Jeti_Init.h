@@ -28,12 +28,12 @@ const unsigned char Jeti_SensorID4 = 0x08;
 
 // Sensors
 int uLoopCount = 0;
-long uRelAltitude = -1;
-long uAbsAltitude = -1;
-long uPressure = -1;
-long uTemperature = -1;
-long uVario = -1;
-long uRawVario = -1;
+long uRelAltitude = 0;
+long uAbsAltitude = 0;
+long uPressure = 0;
+long uTemperature = 0;
+long uVario = 0;
+long uRawVario = 0;
 double lastVariofilter = 0;
 long curAltitude = 0;
 long lastAltitude = 0;
@@ -53,7 +53,8 @@ enum senType{
  unknown,
  BMP085_BMP180,
  BMP280,
- BME280
+ BME280,
+ MS5611 // ############ BETA ############ NOT TESTED !!!!!
 };
 
 struct{
@@ -70,12 +71,16 @@ struct{
 // BMP085/BMP180
 #define BMP085_FILTER_X 0.5
 #define BMP085_FILTER_Y 0.5
-
 #define BMP085_DEADZONE 0
 
 
 // BMP280/BMP280
 #define BMx280_FILTER_X 0.88
 #define BMx280_FILTER_Y 0.15
-
 #define BMx280_DEADZONE 3
+
+// ############ BETA ############ NOT TESTED !!!!!
+// MS5611
+#define MS5611_FILTER_X 0.5
+#define MS5611_FILTER_Y 0.5
+#define MS5611_DEADZONE 0
