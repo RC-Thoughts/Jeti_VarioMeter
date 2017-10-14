@@ -2,16 +2,16 @@
 
 switch (current_screen)
 {
-case 0 : {
+case aboutScreen : {
     JB.JetiBox_P(ABOUT_1, ABOUT_2);
     break;
   }
-case 1 : {
+case viewCurAltitude : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     // Line 1
     strcat_P((char*)&msg_line1, (const char*)F("Altit: "));
     temp[0] = 0;
-    floatToString((char*)&temp, ((float)uAltitude / 10), 1);
+    floatToString((char*)&temp, ((float)uRelAltitude / 10), 1);
     strcat((char*)&msg_line1, (char*)&temp);
     if (units == 1) {
       strcat_P((char*)&msg_line1, (const char*)F("ft"));
@@ -32,7 +32,7 @@ case 1 : {
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 2 : {
+case viewCurTemperature : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     // Line 1
     strcat_P((char*)&msg_line1, (const char*)F("Temp: "));
@@ -58,88 +58,99 @@ case 2 : {
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 3 : {
+case resetAltitude : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Altitude Reset"));
     strcat_P((char*)&msg_line2, (const char*)F("Press DN"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 4 : {
+case setFilterX : {
     // Filter X
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Filter X: "));
     temp[0] = 0;
-    floatToString((char*)&temp, ((float)FilterX / 100), 2);
+    floatToString((char*)&temp, (pressureSensor.filterX), 2);
     strcat((char*)&msg_line1, (char*)&temp);
     strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 5 : {
+case setFilterY : {
     // Filter Y
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Filter Y: "));
     temp[0] = 0;
-    floatToString((char*)&temp, ((float)FilterY / 100), 2);
+    floatToString((char*)&temp, (pressureSensor.filterY), 2);
     strcat((char*)&msg_line1, (char*)&temp);
     strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 6 : {
+case setDeadzone : {
     // Deadzone
     msg_line1[0] = 0; msg_line2[0] = 0;
-    strcat_P((char*)&msg_line1, (const char*)F("Deadzone: "));
+    strcat_P((char*)&msg_line1, (const char*)F("Deadzone cm: "));
     temp[0] = 0;
-    floatToString((char*)&temp, ((float)DEADZONE_UP), 0);
+    floatToString((char*)&temp, (pressureSensor.deadzone), 0);
     strcat((char*)&msg_line1, (char*)&temp);
     strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 7 : {
+case setUnits : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Units:  "));
-    if (units == 1) {
+    if (units == US) {
       strcat_P((char*)&msg_line1, (const char*)F("US"));
     } else {
       strcat_P((char*)&msg_line1, (const char*)F("EU"));
     }
-    strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
+    strcat_P((char*)&msg_line2, (const char*)F("Chg DN Next >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 8 : {
+case detectedSensor : {
     msg_line1[0] = 0; msg_line2[0] = 0;
-    strcat_P((char*)&msg_line1, (const char*)F("Sensor: "));
-    if (senStore == 0) {
-      strcat_P((char*)&msg_line1, (const char*)F("BMP280"));
+    strcat_P((char*)&msg_line1, (const char*)F("detected Sensor: "));
+    if (pressureSensor.type == unknown) {
+      strcat_P((char*)&msg_line2, (const char*)F("not available"));
     }
-    if (senStore == 1) {
-      strcat_P((char*)&msg_line1, (const char*)F("BME280"));
+    if (pressureSensor.type == BMP085_BMP180) {
+      strcat_P((char*)&msg_line2, (const char*)F("BMP085/BMP180"));
     }
-    if (senStore == 2) {
-      strcat_P((char*)&msg_line1, (const char*)F("BMP085"));
+    if (pressureSensor.type == BMP280) {
+      strcat_P((char*)&msg_line2, (const char*)F("BMP280"));
     }
-    if (senStore == 3) {
-      strcat_P((char*)&msg_line1, (const char*)F("BMP180"));
+    if (pressureSensor.type == BME280) {
+      strcat_P((char*)&msg_line2, (const char*)F("BME280"));
     }
-    strcat_P((char*)&msg_line2, (const char*)F("Chg UpDn Next >"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 9 : {
+case setRawVario : {
+    msg_line1[0] = 0; msg_line2[0] = 0;
+    strcat_P((char*)&msg_line1, (const char*)F("raw Vario: "));
+    if (tempJBviewRawVario) {
+      strcat_P((char*)&msg_line1, (const char*)F("ON"));
+    } else {
+      strcat_P((char*)&msg_line1, (const char*)F("OFF"));
+    }
+    strcat_P((char*)&msg_line2, (const char*)F("Chg DN Next >"));
+    JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
+    break;
+  }
+case saveSettings : {
     msg_line1[0] = 0; msg_line2[0] = 0;
     strcat_P((char*)&msg_line1, (const char*)F("Save and restart"));
-    strcat_P((char*)&msg_line2, (const char*)F("Press: >"));
+    strcat_P((char*)&msg_line2, (const char*)F("Press: DN"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }
-case 10 : {
+case defaultSettings : {
     msg_line1[0] = 0; msg_line2[0] = 0;
-    strcat_P((char*)&msg_line1, (const char*)F("Altitude reset"));
-    strcat_P((char*)&msg_line2, (const char*)F("Press < to exit"));
+    strcat_P((char*)&msg_line1, (const char*)F("default settings"));
+    strcat_P((char*)&msg_line2, (const char*)F("Press: DN"));
     JB.JetiBox((char*)&msg_line1, (char*)&msg_line2);
     break;
   }

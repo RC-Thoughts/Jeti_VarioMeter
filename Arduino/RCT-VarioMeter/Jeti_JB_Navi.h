@@ -14,139 +14,86 @@ if ( (read != 240 ) && (read != 0) )
   switch (read)
   {
     case 224 : // RIGHT
-      if (current_screen != MAX_SCREEN)
+      if (current_screen < MAX_SCREEN)
       {
-        if (current_screen == 9) {
-          EEPROM.write(0, units);
-          EEPROM.write(1, senStore);
-          EEPROM.write(2, DEADZONE_UP);
-          EEPROM.write(3, FilterX);
-          EEPROM.write(4, FilterY);
-          delay(100);
-          resetFunc();
-        }
-        if (current_screen == 10) {
-          current_screen = 0;
-        }
         current_screen++;
+      } else {
+        current_screen = 1;
       }
       break;
     case 112 : // LEFT
-      if (current_screen == 10) {
-        current_screen = 1;
-      }
-      if (current_screen != 0) {
+      if (current_screen > 1)
+      {
         current_screen--;
+      } else {
+        current_screen = MAX_SCREEN;
       }
       break;
     case 208 : // UP
-      if (current_screen == 4) {
-        FilterX++;
-        if (FilterX == 100) {
-          FilterX = 1;
+      if (current_screen == setFilterX) {
+        if (pressureSensor.filterX < 0.99) {
+          pressureSensor.filterX += 0.01;
         }
-        FILTER_X = (float)FilterX / 100;
-        current_screen = 4;
       }
-      if (current_screen == 5) {
-        FilterY++;
-        if (FilterY == 100) {
-          FilterY = 1;
+      if (current_screen == setFilterY) {
+        if (pressureSensor.filterY < 0.99) {
+          pressureSensor.filterY += 0.01;
         }
-        FILTER_Y = (float)FilterY / 100;
-        current_screen = 5;
       }
-      if (current_screen == 6) {
-        if (DEADZONE_UP < 5) {
-          DEADZONE_UP++;
-        } else if (DEADZONE_UP == 5) {
-          DEADZONE_UP = 0;
+      if (current_screen == setDeadzone) {
+        if (pressureSensor.deadzone < 100) {
+          pressureSensor.deadzone++;
         }
-        DEADZONE_DOWN = (DEADZONE_UP * -1);
-        current_screen = 6;
       }
       break;
     case 176 : // DOWN
-      if (current_screen == 3) {
+      if (current_screen == resetAltitude) {
         startAltitude = curAltitude;
-        current_screen = 10;
+        current_screen = 0;
       }
-      if (current_screen == 4) {
-        FilterX--;
-        if (FilterX <= 0) {
-          FilterX = 1;
+      if (current_screen == setFilterX) {
+        if (pressureSensor.filterX > 0) {
+          pressureSensor.filterX -= 0.01;
         }
-        FILTER_X = (float)FilterX / 100;
-        current_screen = 4;
       }
-      if (current_screen == 5) {
-        FilterY--;
-        if (FilterY <= 0) {
-          FilterY = 1;
+      if (current_screen == setFilterY) {
+        if (pressureSensor.filterY > 0) {
+          pressureSensor.filterY -= 0.01;
         }
-        FILTER_Y = (float)FilterY / 100;
-        current_screen = 5;
       }
-      if (current_screen == 6) {
-        if (DEADZONE_UP > 0) {
-          DEADZONE_UP--;
-          current_screen = 6;
-        } else if (DEADZONE_UP == 0) {
-          DEADZONE_UP = 5;
+      if (current_screen == setDeadzone) {
+        if (pressureSensor.deadzone > 0) {
+          pressureSensor.deadzone--;
         }
-        DEADZONE_DOWN = (DEADZONE_UP * -1);
-        current_screen = 6;
       }
-      if (current_screen == 7) {
-        if (units == 0) {
-          units = 1;
-        } else {
-          units = 0;
+      if (current_screen == setUnits) {
+        if(units == EU){
+          units = US;
+        }else{
+          units = EU;
         }
-        current_screen = 7;
       }
-      if (current_screen == 8) {
-        if (senStore == 0) {
-          senStore = 1;
-        } else if (senStore == 1) {
-          senStore = 2;
-        } else if (senStore == 2) {
-          senStore = 3;
-        } else if (senStore == 3) {
-          senStore = 0;
-        }
-        current_screen = 8;
+      if (current_screen == setRawVario) {
+        tempJBviewRawVario = !tempJBviewRawVario;
+      }
+      if (current_screen == saveSettings) {
+        EEPROM.write(0, units);
+        EEPROM.write(1, tempJBviewRawVario);
+        EEPROM.write(2, int(pressureSensor.deadzone)); 
+        EEPROM.write(3, int(pressureSensor.filterX*100)); 
+        EEPROM.write(4, int(pressureSensor.filterY*100));
+        delay(100);
+        resetFunc();
+      }
+      if (current_screen == defaultSettings) {
+        EEPROM.write(10, 0);
+        delay(100);
+        resetFunc();
       }
       break;
     case 144 : // UP+DOWN
-      if (current_screen == 4) {
-        FilterX = FilterX + 10;
-        if (FilterX > 99) {
-          FilterX = 99;
-        }
-        FILTER_X = (float)FilterX / 100;
-        current_screen = 4;
-      }
-      if (current_screen == 5) {
-        FilterY = FilterY + 10;
-        if (FilterY > 99) {
-          FilterY = 99;
-        }
-        FILTER_Y = (float)FilterY / 100;
-        current_screen = 5;
-      }
       break;
     case 96 : // LEFT+RIGHT
-      if (current_screen == 4) {
-        FilterX = 1;
-        FILTER_X = (float)FilterX / 100;
-        current_screen = 4;
-      }
-      if (current_screen == 5) {
-        FilterY = 1;
-        FILTER_Y = (float)FilterY / 100;
-        current_screen = 5;
-      }
       break;
   }
 }
