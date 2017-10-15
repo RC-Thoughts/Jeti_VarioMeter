@@ -85,5 +85,5 @@ if (units == US) {
   uVario = uVario / 0.3048;
   uRawVario = uRawVario / 0.3048;
   uPressure = uPressure * 0.029529983071445;
-  uTemperature = uTemperature * 1.8 + 32;
+  uTemperature = uTemperature * 1.8 + 320;
 }
