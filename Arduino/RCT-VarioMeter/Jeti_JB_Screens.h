@@ -30,7 +30,7 @@ case viewCurAltVario : {
         strcat_P((char*)&msg_line1, (const char*)F("   "));
       } else if (charLength == 5) {
         strcat_P((char*)&msg_line1, (const char*)F("  "));
-      } else if (charLength == 5) {
+      } else if (charLength == 8) {
         strcat_P((char*)&msg_line1, (const char*)F(" "));
       } else {
         strcat_P((char*)&msg_line1, (const char*)F(""));
