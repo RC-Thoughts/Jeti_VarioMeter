@@ -1,36 +1,41 @@
- /*
-   -----------------------------------------------------------
-                   Jeti Variometer v 1.3
-   -----------------------------------------------------------
+/*
+  -----------------------------------------------------------
+                  Jeti Variometer v 1.4
+  -----------------------------------------------------------
 
-    Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
+   Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
 
-   -----------------------------------------------------------
+  -----------------------------------------------------------
 
-    Simple Variometer sensor - Vertical speed in m/s or ft/s
+   Simple Variometer sensor - Vertical speed in m/s or ft/s
 
-    Includes
-    - Relative altitude
-    - Altitude
-    - Temperatue
-    - Pressure
-    - Vario
-    - Humidity (Requires BME280)
+   Includes
+   - Relative altitude
+   - Altitude
+   - Temperatue
+   - Pressure
+   - Vario
+   - Humidity (Requires BME280)
 
-     Localization selectable vith Jetibox by user to EU / US:
-     - Altitudes    m / ft
-     - Temperature  C / F
-     - Pressure     hPa / inHG
-     - Vario        m/s / ft/s
-     - Humidity     hR (Requires BME280)
+    Localization selectable vith Jetibox by user to EU / US:
+    - Altitudes    m / ft
+    - Temperature  C / F
+    - Pressure     hPa / inHG
+    - Vario        m/s / ft/s
+    - Humidity     hR (Requires BME280)
 
-    Compatible with BMP085, BMP280 and BME280 sensors
+   Sensor-module compatibility:
+    - BMP085, BMP180, BMP280
+    - BME280
+   Experimental compatibility:
+    - MS5611
+    - LPS311AP
 
-    Big thanks to scimart for testing with test-environment!
-    Big thanks to nightflyer88 for great vario-filter!
-   -----------------------------------------------------------
-    Shared under MIT-license by Tero Salminen (c) 2017
-   -----------------------------------------------------------
+   Big thanks to scimart for testing with test-environment!
+   Big thanks to nightflyer88 for great vario-filter!
+  -----------------------------------------------------------
+   Shared under MIT-license by Tero Salminen (c) 2017
+  -----------------------------------------------------------
 */
 
 #if defined(__AVR_ATmega328P__)
@@ -166,8 +171,8 @@ void setup()
 
 void process_screens()
 {
-  char msg_line1[LCDMaxPos / 2];
-  char msg_line2[LCDMaxPos / 2];
+  char msg_line1[LCDMaxPos / 2 + 1];
+  char msg_line2[LCDMaxPos / 2 + 1];
   char temp[LCDMaxPos / 2];
 
   if (last_screen != current_screen)
