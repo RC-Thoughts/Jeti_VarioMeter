@@ -5,6 +5,11 @@
  Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
 
 ------------------------------------------------------------
+2017-11-12  Tero Salminen  <tero@rc-thoughts.com>
+
+    * v.1.5 Selection of correct I2C-address for BMP280 or
+            BME280 is now automatic.
+            
 2017-10-15  Tero Salminen  <tero@rc-thoughts.com>
 
     * v.1.4 Added experimental support for MS5611 and LPS311

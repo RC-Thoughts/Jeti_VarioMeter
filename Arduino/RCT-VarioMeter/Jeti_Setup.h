@@ -6,9 +6,13 @@ JB.Init(F("RCT Vario"), JETI_RX, 9900);
 // identify sensor
 if (bmp085.begin()) {
   pressureSensor.type = BMP085_BMP180;
-} else if (bmp280.begin()) {
+} else if (bmp280.begin(0x77)) {
   pressureSensor.type = BMP280;
-} else if (bme280.begin()) {
+} else if (bmp280.begin(0x76)) {
+  pressureSensor.type = BMP280;
+} else if (bme280.begin(0x77)) {
+  pressureSensor.type = BME280;
+} else if (bme280.begin(0x76)) {
   pressureSensor.type = BME280;
 } else if (lps.init()) {
   Wire.begin();
