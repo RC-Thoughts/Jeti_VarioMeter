@@ -2,7 +2,7 @@
 
 // Jetibox Start Screen
 #define ABOUT_1 F(" RCT Jeti Tools")
-#define ABOUT_2 F(" Variometer 1.4")
+#define ABOUT_2 F(" Variometer 1.5")
 
 // Max screens in jetibox (navigating over this goes to start)
 #define MAX_SCREEN 11
