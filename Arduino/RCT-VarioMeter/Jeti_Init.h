@@ -73,7 +73,7 @@ struct {
 #define BMP085_FILTER_Y 0.5
 #define BMP085_DEADZONE 0
 
-// BMP280/BMP280
+// BMP280/BME280
 #define BMx280_FILTER_X 0.88
 #define BMx280_FILTER_Y 0.15
 #define BMx280_DEADZONE 3
