@@ -20,10 +20,14 @@ Localization selectable vith Jetibox by user to EU / US:
  - Vario        m/s / ft/s
  - Humidity     hR (Requires BME280)
      
-Compatible with BMP085, BMP180, BMP280 and BME280 sensors
-
-Experimental support for MS5611 and LPS311
+Compatible with following sensors (autodetect):
+ - BMP085
+ - BMP180
+ - BMP280
+ - BME280
+ - MS5611
+ - LPS311AP
 
 More info: https://www.rc-thoughts.com/jeti-variometer/
 
-Shared under MIT-license by Tero Salminen (c) RC-Thoughts 2017
+Shared under MIT-license by Tero Salminen (c) RC-Thoughts 2017-2019

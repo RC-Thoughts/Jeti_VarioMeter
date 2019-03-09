@@ -5,6 +5,10 @@
  Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
 
 ------------------------------------------------------------
+2019-03-09  Tero Salminen  <tero@rc-thoughts.com>
+
+    * v.1.6 Fixed LPS331AP functions - No longer experimental.
+            
 2017-11-12  Tero Salminen  <tero@rc-thoughts.com>
 
     * v.1.5 Selection of correct I2C-address for BMP280 or

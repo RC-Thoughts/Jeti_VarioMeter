@@ -1,9 +1,9 @@
 /*
   -----------------------------------------------------------
-                  Jeti Variometer v 1.5
+                  Jeti Variometer v 1.6
   -----------------------------------------------------------
 
-   Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
+   Tero Salminen RC-Thoughts.com (c) 2017-2019 www.rc-thoughts.com
 
   -----------------------------------------------------------
 
@@ -27,14 +27,13 @@
    Sensor-module compatibility:
     - BMP085, BMP180, BMP280
     - BME280
-   Experimental compatibility:
     - MS5611
     - LPS311AP
 
    Big thanks to scimart for testing with test-environment!
    Big thanks to nightflyer88 for great vario-filter!
   -----------------------------------------------------------
-   Shared under MIT-license by Tero Salminen (c) 2017
+   Shared under MIT-license by Tero Salminen (c) 2017 - 2019
   -----------------------------------------------------------
 */
 

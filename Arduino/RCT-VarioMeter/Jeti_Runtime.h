@@ -28,8 +28,8 @@ case MS5611 : {
     break;
   }
 case LPS : {
-    uPressure = lps.readPressureMillibars(); // In Pascal (100 Pa = 1 hPa = 1 mbar)
-    curAltitude = lps.pressureToAltitudeMeters(uPressure) * 100; // In Centimeter
+    uPressure = lps.readPressureMillibars() * 100; // In Pascal (100 Pa = 1 hPa = 1 mbar)
+    curAltitude = lps.pressureToAltitudeMeters((uPressure) / 100) * 100; // In Centimeter
     uTemperature = lps.readTemperatureC() * 10; // In Celsius ( x10 for one decimal)
     break;
   }
