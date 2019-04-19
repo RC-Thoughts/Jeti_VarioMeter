@@ -1,7 +1,7 @@
 // Stuff that needs to be inside void setup()
 
 // Sensor Name, Serial speed is 9900 for Pro Mini 3.3V due software serial
-JB.Init(F("RCT Vario"), JETI_RX, 9850);
+JB.Init(F("RCT Vario"), JETI_RX, 9900);
 
 // identify sensor
 if (bmp085.begin()) {

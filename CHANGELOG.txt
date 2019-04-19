@@ -2,9 +2,14 @@
                    DIY Jeti Variometer
 ------------------------------------------------------------
 
- Tero Salminen RC-Thoughts.com (c) 2017 www.rc-thoughts.com
+ Tero Salminen RC-Thoughts.com (c) 2019 www.rc-thoughts.com
 
 ------------------------------------------------------------
+2019-03-09  Tero Salminen  <tero@rc-thoughts.com>
+
+    * v.1.6 Added HEX for Arduino Nano and zip with two
+            different serial speeds for Arduino Pro Mini.
+
 2019-03-09  Tero Salminen  <tero@rc-thoughts.com>
 
     * v.1.6 Fixed LPS331AP functions - No longer experimental.
